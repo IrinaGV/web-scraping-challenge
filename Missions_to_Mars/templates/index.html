@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MARS</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fira Sans:300,400,500,600,700&display=swap" rel="stylesheet">
+<link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+
+</head>
+<body>
+<div class="container">
+<div class="h-100 header p-5 rounded-3 text-center">
+<h1 class="fw-bold">Mission To Mars</h1>
+<a class="btn btn-primary" href="http://127.0.0.1:5000/scrape" role="button">Scrape New Data!</a></p>
+</div>     
+<h2>Latest Mars News:</h2>
+<h4>{{ mars.mars_news }}</h4>
+<p>{{ mars.mars_paragraph }}</p>
+<div class="my-4 row">
+<div class="col-8">
+<h4>Featured Mars Image</h4>
+<img src="{{ mars.featured_image_url }}"/>
+</div>
+<div class="col-4">
+<h4>Mars Facts</h4>
+{{ mars.mars_html_table_string|safe }}
+</div>
+</div>
+<h4 class="text-center">Mars Hemispheres</h4>
+<div class="my-4 row">
+{% for hemisphere in mars.mars_hemisphere %}
+<div class="card col-md-3 col-xs-12">
+<img src="{{ hemisphere.image_url }}" class="card-img-top img-fluid" alt="...">
+<div class="card-body">
+<h5 class="card-title">{{ hemisphere.title }}</h5>
+</div>
+</div>                    
+{% endfor %}
+</div>
+</div>
+         
+        
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>           
+</body>
+</html
